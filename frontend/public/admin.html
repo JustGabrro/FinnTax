@@ -1,0 +1,53 @@
+<!-- <!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FinTax Admin</title>
+<link rel="stylesheet" href="/fintax/frontend/css/styles.css"></head>
+<body>
+  <div class="container" style="max-width:720px;padding-top:2rem">
+    <h1>Admin — FinTax</h1>
+    <form id="loginForm">
+      <label><span>Email</span><input name="email" type="email" required></label>
+      <label><span>Password</span><input name="password" type="password" required></label>
+      <button class="btn btn-primary">Login</button>
+    </form>
+
+    <div id="adminArea" style="display:none">
+      <h2>Manage Content</h2>
+      <label><span>Slug</span><input id="slug" value="home"></label>
+      <label><span>Title</span><input id="title"></label>
+      <label><span>Body (HTML)</span><textarea id="body" rows="8"></textarea></label>
+      <button id="saveBtn" class="btn btn-primary">Save</button>
+      <div id="adminResult" class="form-result"></div>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const adminArea = document.getElementById('adminArea');
+    const apiBase = 'http://localhost:4000/api';
+    let token = null;
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(loginForm).entries());
+      const res = await fetch(`${apiBase}/auth/login`, {method:'POST',headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)});
+      const json = await res.json();
+      if(res.ok){ token = json.token; loginForm.style.display='none'; adminArea.style.display='block'; }
+      else alert(json.error || 'Login failed');
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', async () => {
+      const slug = document.getElementById('slug').value;
+      const body = document.getElementById('body').value;
+      const title = document.getElementById('title').value;
+      const res = await fetch(`${apiBase}/content/${encodeURIComponent(slug)}`, {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization': 'Bearer '+token},
+        body: JSON.stringify({title, body})
+      });
+      const json = await res.json();
+      document.getElementById('adminResult').textContent = res.ok ? 'Saved.' : (json.error||'Error');
+    });
+  </script>
+</body>
+</html> -->
