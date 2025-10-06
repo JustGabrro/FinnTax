@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../css/contact.css" />
+  <!-- Corrected relative path to stylesheet -->
+  <link rel="stylesheet" href="css/contact.css" />
   <meta name="description" content="Contact FinTax — get in touch" />
 
 </head>
@@ -55,10 +56,14 @@
           <option value="bookkeeping">Bookkeeping / Payroll</option>
         </select>
 
-        <label for="date">Request appointment day</label>
-        <input id="date" name="date" type="date" required />
+        <label for="dateYear">Request appointment day</label>
+        <div class="appointment-picker" id="appointmentPicker" style="display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1rem;">
+          <select id="dateYear" required aria-label="Year" style="flex:1 1 90px; min-width:90px;"></select>
+          <select id="dateMonth" required aria-label="Month" style="flex:1 1 120px; min-width:120px;"></select>
+          <select id="dateDay" required aria-label="Day" style="flex:1 1 90px; min-width:90px;"></select>
+        </div>
+        <input id="date" name="date" type="hidden" required />
 
-        <label for="time">Specify preferred appointment time — From</label>
         <select id="time" name="time" required>
           <option value="">Select a time</option>
           <option>9:00am - 9:30am</option>
@@ -99,12 +104,12 @@
     <!-- About the Company -->
     <div class="footer-section">
       <h4>About the Company</h4>
-  <ul class="footer-links vertical">
+      <ul class="footer-links vertical">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <p class="copyright" style="margin-top:.6rem;font-size:.85rem;">© 2025 FinTax. All rights reserved.</p>
     </div>
 
     <!-- Contact Us -->
@@ -121,6 +126,7 @@
       <ul class="footer-links">
         <li><a href="privacy.html">Read our Privacy Policy</a></li>
       </ul>
+      <p class="copyright" style="margin-top:.6rem;font-size:.85rem;">© 2025 FinTax. All rights reserved.</p>
     </div>
 
     <!-- Additional Info / Newsletter -->
@@ -148,7 +154,7 @@
   </div>
 
 </footer>
-  <script src="../js/main.js"></script>
+  <script src="./js/main.js"></script>
   <script>
     // AJAX form submit for Getform
     const form = document.getElementById('contactForm');
@@ -177,5 +183,6 @@
       }
     });
   </script>
+  <script src="./js/app.js"></script>
 </body>
 </html>

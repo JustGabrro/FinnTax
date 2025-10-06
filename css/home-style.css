@@ -77,6 +77,18 @@ a {
   z-index: 1000;
 }
 
+/* Make header contents span full width while keeping internal horizontal padding */
+.site-header .container.header-inner {
+  width: 100%;
+  max-width: 100%;
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* Logo / brand polish */
+.brand .logo { object-fit: cover; }
+.brand { gap: .4rem; }
+
 .header-inner {
   display: flex;
   justify-content: space-between;
@@ -356,6 +368,15 @@ a {
   flex-wrap: wrap;
 }
 
+/* Remove bullets from non-vertical footer lists (e.g., Privacy Policy) */
+.site-footer .footer-links:not(.vertical) {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+/* Slight left shift for single-line policy list */
+.site-footer .footer-section ul.footer-links:not(.vertical) { margin-left: -4px; }
+
 /* Vertical variant */
 .footer-links.vertical {
   flex-direction: column;
@@ -480,10 +501,42 @@ a {
     display: flex;
   }
 
+  /* Mobile: center the Privacy Policy list */
+  .site-footer .footer-section ul.footer-links:not(.vertical) {
+    margin-left: 0; /* remove desktop shift */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
   .footer-inner {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  /* Center the About the Company links stack under the heading on mobile */
+  .footer-links.vertical {
+    align-items: center;        /* center list items */
+    margin-left: 0;            /* remove desktop offset */
+    padding: 0;                /* remove default list indent */
+    list-style: none;          /* hide bullets only on mobile */
+  }
+
+  /* Ensure list items span only intrinsic width and are centered */
+  .footer-links.vertical li {
+    width: auto;
+  }
+
+  /* Make anchors full-width for consistent centering baseline */
+  .footer-links.vertical li a {
+    display: block;
+    text-align: center;
+  }
+
+  /* Optional: slight spacing tweak for better vertical rhythm */
+  .footer-section h4 + .footer-links.vertical {
+    margin-top: 0.35rem;
   }
 
   .footer-right .newsletter-form {
@@ -493,6 +546,36 @@ a {
 
   .footer-right .newsletter-form input {
     width: 100%;
+  }
+
+  /* Center social media icons on mobile */
+  .social-links {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  /* Force header to stay fixed for full page scroll on mobile */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1100; /* above other content */
+  }
+
+  /* Offset page content so it's not hidden behind fixed header */
+  body { padding-top: 72px; }
+
+  /* Make the slide-down mobile nav also fixed just below header */
+  .mobile-nav {
+    position: fixed;
+    top: 72px; /* header height */
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    z-index: 1090;
   }
 }
 
